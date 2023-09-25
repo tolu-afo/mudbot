@@ -9,9 +9,10 @@ defmodule EventConsumer do
         Api.create_message(msg.channel_id, "Going to sleep...")
         # This won't stop other events from being handled.
         Process.sleep(3000)
+        Api.create_message(msg.channel_id, "I'm awake!")
 
       "!ping" ->
-        Api.create_message(msg.channel_id, "pyongyang!")
+        Api.create_message(msg.channel_id, "pyongyang!!")
 
       "!raise" ->
         # This won't crash the entire Consumer.
