@@ -4,22 +4,21 @@ defmodule EventConsumer do
   alias Nostrum.Api
 
   def handle_event({:MESSAGE_CREATE, msg, _ws_state}) do
+    IO.puts(msg.content)
     case msg.content do
       "!sleep" ->
         Api.create_message(msg.channel_id, "Going to sleep...")
-        # This won't stop other events from being handled.
         Process.sleep(3000)
         Api.create_message(msg.channel_id, "I'm awake!")
 
-      "!ping" ->
-        Api.create_message(msg.channel_id, "pyongyang!!")
+      "!ping" -> Api.create_message(msg.channel_id, "pong!")
 
       "!raise" ->
         # This won't crash the entire Consumer.
         raise "No problems here!"
 
       _ ->
-        :ignore
+        IO.puts "test #{msg.content}"
     end
   end
 

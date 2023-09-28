@@ -1,8 +1,10 @@
-defmodule EventSupervisor do
+defmodule Mudbot.EventSupervisor do
   use Supervisor
 
   def start_link(args) do
+    IO.puts "Starting Supervisor"
     Supervisor.start_link(__MODULE__, args, name: __MODULE__)
+    IO.puts "Listening to Events"
   end
 
   @impl true
