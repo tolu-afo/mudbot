@@ -1,4 +1,4 @@
-defmodule CharacterManager do
+defmodule Mudbot.CharacterManager do
   @moduledoc """
   A module for managing characters and their quests.
   """

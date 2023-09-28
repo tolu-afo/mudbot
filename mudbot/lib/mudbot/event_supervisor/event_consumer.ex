@@ -1,4 +1,4 @@
-defmodule Mudbot.EventConsumer do
+defmodule Mudbot.EventSupervisor.EventConsumer do
   use Nostrum.Consumer
 
   alias Nostrum.Api

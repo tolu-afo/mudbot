@@ -31,8 +31,9 @@ defmodule Mudbot.QuestManager do
   end
 
   # Function to delete a quest by index
-  def delete_quest_by_index(quests, index) when is_list(quests) and is_integer(index) do
-    Enum.delete_at(quests, index)
+  def delete_by_index(quests, index) when is_list(quests) and is_integer(index) do
+    {bef, [_deleted | aft]} = Enum.split(quests, index)
+    Enum.concat([bef, aft])
   end
 
 end
