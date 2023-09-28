@@ -1,4 +1,4 @@
-defmodule EventConsumer do
+defmodule Mudbot.EventConsumer do
   use Nostrum.Consumer
 
   alias Nostrum.Api
@@ -18,7 +18,7 @@ defmodule EventConsumer do
         raise "No problems here!"
 
       _ ->
-        IO.puts "test #{msg.content}"
+        :ignore
     end
   end
 
