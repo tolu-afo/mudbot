@@ -26,8 +26,7 @@ defmodule Mudbot.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:nostrum, "~> 0.8"},
-      {:mox, "~> 1.1.0", only: :test}
+      {:nostrum, git: "https://github.com/Kraigie/nostrum.git", branch: "master"},
     ]
   end
 end
