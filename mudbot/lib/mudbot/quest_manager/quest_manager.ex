@@ -2,12 +2,15 @@ defmodule Mudbot.QuestManager do
   @moduledoc """
   This is the quest manager (glorified todo manager) that will perform CRUD operations on the tasks of players.
   """
+  @quest_id 1
 
-  defstruct name: "", challenge_score: 0, completed: false
+  defstruct id: nil, char_id: nil, task_name: "", completed: false
 
   # Function to create a new quest item
-  def new_quest(name, challenge_score) when is_binary(name) do
-    %__MODULE__{name: name, completed: false, challenge_score: challenge_score}
+  def new_quest(task_name, char_id) when is_binary(task_name) do
+    id = quest_id
+    quest_id = quest_id + 1
+    %__MODULE__{task_name: task_name, completed: false}
   end
 
   # Function to mark a quest item as completed

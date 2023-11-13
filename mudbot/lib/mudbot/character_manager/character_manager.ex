@@ -4,15 +4,15 @@ defmodule Mudbot.CharacterManager do
   """
 
   # Structure for a character
-  defstruct name: "", id: nil, quests: []
+  defstruct name: "", username: "", id: nil, quests: []
 
   # Store to keep track of characters
   @characters %{}
 
   # Create a new character
-  def create_character(name) when is_binary(name) do
+  def create_character(name, username) when is_binary(name) do
     id = :rand.uniform()
-    character = %__MODULE__{id: id, name: name, quests: []}
+    character = %__MODULE__{id: id, name: name, username: username, quests: []}
     @characters = Map.put(@characters, id, character)
     {:ok, character}
   end
@@ -20,6 +20,12 @@ defmodule Mudbot.CharacterManager do
   # Retrieve a character by ID
   def get_character(id) when is_integer(id) do
     case Map.fetch(@characters, id) do
+      {:ok, character} -> {:ok, character}
+      :error -> {:error, "Character not found"}
+    end
+  end
+  def get_character(username) when is_binary(username) do
+    case Map.fetch(@characters, username) do
       {:ok, character} -> {:ok, character}
       :error -> {:error, "Character not found"}
     end
@@ -44,6 +50,16 @@ defmodule Mudbot.CharacterManager do
         updated_character = %{character | quests: [quest | character.quests]}
         @characters = Map.put(@characters, id, updated_character)
         {:ok, updated_character}
+      _ ->
+        {:error, "Character not found"}
+    end
+  end
+
+  # Get and Return a character's quests
+  def get_quests(id) when is_integer(id) do
+    case get_character(id) do
+      {:ok, character} ->
+        {:ok, character.quests}
       _ ->
         {:error, "Character not found"}
     end
