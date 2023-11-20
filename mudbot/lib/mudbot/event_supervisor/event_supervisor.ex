@@ -21,24 +21,9 @@ defmodule EventConsumer do
   alias Mudbot.TextParser
 
   def handle_event({:MESSAGE_CREATE, msg, _ws_state}) do
-    TextParser.parse_msg(msg)
-    # case msg.content do
-    #   "!char" ->
-    #     char = CharacterManager.create_character(msg.author.username)
-    #     IO.inspect(char)
-    #     Api.create_message(msg.channel_id, "character created! ID: #{char.id}")
-    #   "!sleep" ->      
-    #     Api.create_message(msg.channel_id, "Going to sleep...")
-    #     Process.sleep(3000)
-    #     Api.create_message(msg.channel_id, "I'm awake!")
+    {:ok, parseObj} = TextParser.construct_parse(msg)
 
-    #   "!ping" -> Api.create_message(msg.channel_id, "pong!")
-
-    #   "!raise" ->
-    #     # This won't crash the entire Consumer.
-    #     raise "No problems here!"
-
-    #   _ -> :ignore
+    TextParser.parse_msg(parseObj)
   end
 
   # Default event handler, if you don't include this, your consumer WILL crash if

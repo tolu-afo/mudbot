@@ -17,6 +17,7 @@ defmodule Mudbot.Quests do
 
       # displays all uncompleted tasks from a user
       # TODO: third command for completed or uncompleted
+      # we need to know how we want to denote quests/tasks
       "display" ->
         case character.get_quests(character.id) do
           {:ok, quests} ->

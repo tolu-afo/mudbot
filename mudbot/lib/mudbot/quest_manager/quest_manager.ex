@@ -8,8 +8,8 @@ defmodule Mudbot.QuestManager do
 
   # Function to create a new quest item
   def new_quest(task_name, char_id) when is_binary(task_name) do
-    id = quest_id
-    quest_id = quest_id + 1
+    id = @quest_id
+    @quest_id = @quest_id + 1
     %__MODULE__{task_name: task_name, completed: false}
   end
 
